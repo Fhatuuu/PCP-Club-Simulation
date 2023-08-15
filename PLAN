@@ -1,0 +1,81 @@
+AIM: to correct and extend the existing code for a multithreaded simulation of patrons in a club.
+   - use synchronization methods to ensure that the simulation adhere to specified synchronization constraints and maintains saftey and liveliness
+
+CLUB SIMULATION: produce a java simulation of a club, ensuring that it follows defined behavioral rules -
+
+    SIMULATION SPECS
+    .... a club is represented as a GRID of a specified size
+    .... contains an entrance door
+    .... an exit door
+    .... a dance area 
+    .... a bar
+
+    HOW THE SIMULATION RUNS
+    The simulation begins when the user presses tha START button.
+    Patrons enter through th entrance door, proceed to the bar and the engage in various activities, i.e dancing and wandering.
+    After a while, they DECIDE to LEAVE and head to the exit door: LEAVING ONE BY ONE.
+
+    COUNTERS keep track (ACCURATE)  of the people waiting to enter the venue, those inside and those that have left.
+
+    The PAUSE button pauses/resumes the simulation and QUIT exits the program
+
+    BEHAVIOUR RULES
+    • The Start button initiates the simulation.
+    • The Pause button pauses/resumes the simulation.
+    • The Quit button terminates the simulation (it does).
+    • Patrons enter through the entrance door and exit through the exit doors.
+    • The entrance and exit doors are accessed by one patron at a time.
+    • The maximum number of patrons inside the club must not exceed a specified
+    limit.
+    • Patrons must wait if the club limit is reached or the entrance door is
+    occupied.
+    • Inside the club, patrons maintain a realistic distance from each other (one
+    per grid block).
+    • Patrons move block by block and simultaneously to ensure liveness.
+    • The simulation must be free from deadlock
+
+    MY TASK: FIX THE CODE!!!!!
+    identify and correct all the concurrency issues to that all the rules are complied with all the time.
+    Ensure thta the simulation suffere no safety or liveness problems.
+
+    OPTIONAL- Andre the Barman: extend the simulation by implementing this. Basically serve drinks to patrons at the bar, patrons must not leave the bar before being served. (Implement as a seperate thread)
+
+CODE DESCRIPTION:
+    The assignment provides a skeleton Java implementation with eight classes:
+
+    ClubSimulation.java: Main class for setting up and starting the simulation.
+
+    ClubView.java: JPanel class for visualization.
+
+    CounterDisplay.java: Class for displaying/updating counters.
+
+    Clubgoer.java: Class representing each patron as a thread.
+
+    PeopleLocation.java: Class for storing patron locations.
+
+    PeopleCounter.java: Class for tracking people inside and outside the club.
+
+    ClubGrid.java: Class representing the club grid.
+
+    GridBlock.java: Class representing grid blocks.
+
+
+Short Report
+In the report, explain how you enforced simulation rules, your design approach for
+Andre, challenges faced, and lessons learned. Detail the synchronization
+mechanisms you added to each class and their appropriateness. Explain how you
+ensured liveness and prevented deadlock.
+
+SOLUTIONS: 
+
+Issues identified: 
+1. The START button does not start the simulation, simulation starts automatically when the program is ran
+2. Pause button does not pause/resume the simulation (basically has no impact on the simulation)
+3. Multiple patrons entering through the door at the same time
+
+Solutions:
+1. Add a lock, so that the simulation does not start until the START button is pressed.
+2. Lock the simulation, when Pause is pressed intially. When Pause is pressed again... resume the simulation (i.e. unlock)
+3. If a patron is at the entrance point, lock the door for other patrons until the patron at the door has successfully entered the club.
+
+
