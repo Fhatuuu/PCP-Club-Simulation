@@ -66,7 +66,7 @@ Andre, challenges faced, and lessons learned. Detail the synchronization
 mechanisms you added to each class and their appropriateness. Explain how you
 ensured liveness and prevented deadlock.
 
-SOLUTIONS: 
+SOLUTION
 
 Issues identified: 
 1. The START button does not start the simulation, simulation starts automatically when the program is ran
