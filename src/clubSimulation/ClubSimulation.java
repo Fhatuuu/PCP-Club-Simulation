@@ -68,7 +68,16 @@ public class ClubSimulation {
 		// add the listener to the jbutton to handle the "pressed" event
 		startB.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e)  {
-			    	  	// THIS DOES NOTHING - MUST BE FIXED  	  
+			    	  	// THIS DOES NOTHING - MUST BE FIXED 
+				//start all the threads
+				Thread t = new Thread(clubView); 
+				t.start();
+				//Start counter thread - for updating counters
+				Thread s = new Thread(counterDisplay);  
+				s.start(); 
+				for (int i=0;i<noClubgoers;i++) {
+				patrons[i].start();
+		}	  
 		    }
 		   });
 			
@@ -132,16 +141,9 @@ public class ClubSimulation {
     		}
 		           
 		setupGUI(frameX, frameY,exit);  //Start Panel thread - for drawing animation
-        //start all the threads
-		Thread t = new Thread(clubView); 
-      	t.start();
-      	//Start counter thread - for updating counters
-      	Thread s = new Thread(counterDisplay);  
-      	s.start();
+        
       	
-      	for (int i=0;i<noClubgoers;i++) {
-			patrons[i].start();
-		}
+      	
  	}
 
 }

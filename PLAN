@@ -69,13 +69,19 @@ ensured liveness and prevented deadlock.
 SOLUTION
 
 Issues identified: 
-1. The START button does not start the simulation, simulation starts automatically when the program is ran
+1. The START button does not starte the simulation, simulation starts automatically when the program is ran (solved)
 2. Pause button does not pause/resume the simulation (basically has no impact on the simulation)
 3. Multiple patrons entering through the door at the same time
+4. Maximum limit is not upheld (more that 5 patrons are entering the club)
+5. Patrons don't move simultanenously (no liveliness)
+6. Deadlock caused by the waiting at the bar...long queues
 
 Solutions:
 1. Add a lock, so that the simulation does not start until the START button is pressed.
 2. Lock the simulation, when Pause is pressed intially. When Pause is pressed again... resume the simulation (i.e. unlock)
 3. If a patron is at the entrance point, lock the door for other patrons until the patron at the door has successfully entered the club.
-
+4. - Lock the door when the amount of patrons inside are 5, and when at least patron leaves, unlock the door.
+   - Patrons outside must wait until there is space inside (ergo waiting number should increment as well)
+5. When one thread is moving, all other threads muct also move, if threads do not have anywhere to go, they should wander around.
+6. A patrons should order on drink and after getting their drink, they should leave (the bar not the club... they can wander).
 
