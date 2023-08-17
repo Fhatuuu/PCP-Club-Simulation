@@ -4,6 +4,8 @@ package clubSimulation;
 import java.util.Random;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /*
  This is the basic ClubGoer Thread class, representing the patrons at the club
@@ -53,7 +55,10 @@ public class Clubgoer extends Thread {
 
 	//check to see if user pressed pause button
 	private void checkPause() {
-		// THIS DOES NOTHING - MUST BE FIXED  	
+		// THIS DOES NOTHING - MUST BE FIXED 
+		boolean paused;
+		
+		 	
         
     }
 	private void startSim() {
