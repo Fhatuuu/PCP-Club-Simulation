@@ -65,7 +65,13 @@ public class Clubgoer extends Thread {
 		
     }
 	private void startSim() {
-		// THIS DOES NOTHING - MUST BE FIXED  	
+		while(!ClubSimulation.isSimStarted())  {
+			try{
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
         
     }
 	

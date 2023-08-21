@@ -25,6 +25,7 @@ public class ClubSimulation {
 	static int gridY=10; //number of y grids in club - default value if not provided on command line
 	static int max=12; //max number of customers - default value if not provided on command line
 	
+	static boolean simStarted = false;
 	static volatile boolean paused = false;
 	
 	static Clubgoer[] patrons; // array for customer threads
@@ -78,7 +79,7 @@ public class ClubSimulation {
 		// add the listener to the jbutton to handle the "pressed" event
 		startB.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e)  {
-				
+				startB.setEnabled(false); // disable if pressed once
 				start(); 
 			}
 		   });
@@ -153,6 +154,8 @@ public class ClubSimulation {
 
 	private static void start() {
 		//start all the threads
+		if (!simStarted){
+			simStarted = true;
 			Thread t = new Thread(clubView); 
 			t.start();
 			//Start counter thread - for updating counters
@@ -161,8 +164,12 @@ public class ClubSimulation {
 			for (int i=0;i<noClubgoers;i++) {
 				patrons[i].start();
 			}
+		}
 	}
 
+	public static boolean isSimStarted(){
+		return simStarted;
+	}
 	public static boolean isPaused() {
 		return paused;
 	}
