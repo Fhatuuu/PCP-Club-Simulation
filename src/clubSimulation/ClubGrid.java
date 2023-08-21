@@ -3,6 +3,9 @@
 
 package clubSimulation;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 //This class represents the club as a grid of GridBlocks
 public class ClubGrid {
 	private GridBlock [][] Blocks;
@@ -16,6 +19,8 @@ public class ClubGrid {
 	private final static int minY =5;//minimum y dimension
 	
 	private PeopleCounter counter;
+
+	private Lock entryLock = new ReentrantLock();
 	
 	ClubGrid(int x, int y, int [] exitBlocks,PeopleCounter c) throws InterruptedException {
 		if (x<minX) x=minX; //minimum x
@@ -29,7 +34,7 @@ public class ClubGrid {
 		counter=c;
 		}
 	
-	//initialise the grsi, creating all the GridBlocks
+	//initialise the grids, creating all the GridBlocks
 	private  void initGrid(int []exitBlocks) throws InterruptedException {
 		for (int i=0;i<x;i++) {
 			for (int j=0;j<y;j++) {
@@ -72,11 +77,19 @@ public class ClubGrid {
 	
 	public GridBlock enterClub(PeopleLocation myLocation) throws InterruptedException  {
 		counter.personArrived(); //add to counter of people waiting 
-		entrance.get(myLocation.getID());
-		counter.personEntered(); //add to counter
-		myLocation.setLocation(entrance);
-		myLocation.setInRoom(true);
-		return entrance;
+
+		entryLock.lock();
+
+		try{
+			entrance.get(myLocation.getID());
+			counter.personEntered(); //add to counter
+			myLocation.setLocation(entrance);
+			myLocation.setInRoom(true);
+			return entrance;
+
+		} finally{
+			entryLock.unlock();
+		}
 	}
 	
 	
