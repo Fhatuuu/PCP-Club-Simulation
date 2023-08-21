@@ -30,8 +30,6 @@ public class Clubgoer extends Thread {
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
 
-	private boolean paused = false;
-
 	
 	Clubgoer( int ID,  PeopleLocation loc,  int speed) {
 		this.ID=ID;

@@ -25,7 +25,7 @@ public class ClubSimulation {
 	static int gridY=10; //number of y grids in club - default value if not provided on command line
 	static int max=5; //max number of customers - default value if not provided on command line
 	
-	static boolean paused = false;
+	static volatile boolean paused = false;
 	
 	static Clubgoer[] patrons; // array for customer threads
 	static PeopleLocation [] peopleLocations;  //array to keep track of where customers are
