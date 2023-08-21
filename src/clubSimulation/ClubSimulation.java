@@ -10,8 +10,13 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ClubSimulation {
+
+
 	static int noClubgoers=20;
    	static int frameX=400;
 	static int frameY=500;
@@ -19,6 +24,8 @@ public class ClubSimulation {
 	static int gridX=10; //number of x grids in club - default value if not provided on command line
 	static int gridY=10; //number of y grids in club - default value if not provided on command line
 	static int max=5; //max number of customers - default value if not provided on command line
+	
+	static boolean paused = false;
 	
 	static Clubgoer[] patrons; // array for customer threads
 	static PeopleLocation [] peopleLocations;  //array to keep track of where customers are
@@ -31,6 +38,9 @@ public class ClubSimulation {
 	
 	private static int maxWait=1200; //for the slowest customer
 	private static int minWait=500; //for the fastest cutomer
+
+	private static Lock lock = new ReentrantLock();
+	private static Condition condition = lock.newCondition();
 
 	public static void setupGUI(int frameX,int frameY,int [] exits) {
 		// Frame initialize and dimensions
@@ -68,17 +78,11 @@ public class ClubSimulation {
 		// add the listener to the jbutton to handle the "pressed" event
 		startB.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e)  {
-			    	  	// THIS DOES NOTHING - MUST BE FIXED 
-				//start all the threads
-				Thread t = new Thread(clubView); 
-				t.start();
-				//Start counter thread - for updating counters
-				Thread s = new Thread(counterDisplay);  
-				s.start(); 
-				for (int i=0;i<noClubgoers;i++) {
-				patrons[i].start();
-		}	  
-		    }
+				
+				start();
+
+			   
+			}
 		   });
 			
 			final JButton pauseB = new JButton("Pause ");;
@@ -86,7 +90,8 @@ public class ClubSimulation {
 			// add the listener to the jbutton to handle the "pressed" event
 			pauseB.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    		// THIS DOES NOTHING - MUST BE FIXED  	
+		    	
+				
 		      }
 		    });
 			
@@ -142,8 +147,18 @@ public class ClubSimulation {
 		           
 		setupGUI(frameX, frameY,exit);  //Start Panel thread - for drawing animation
         
-      	
-      	
  	}
+
+	private static void start() {
+		//start all the threads
+			Thread t = new Thread(clubView); 
+			t.start();
+			//Start counter thread - for updating counters
+			Thread s = new Thread(counterDisplay);  
+			s.start(); 
+			for (int i=0;i<noClubgoers;i++) {
+				patrons[i].start();
+			}
+	}
 
 }

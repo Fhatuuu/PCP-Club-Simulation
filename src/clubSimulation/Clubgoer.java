@@ -4,6 +4,7 @@ package clubSimulation;
 import java.util.Random;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -25,6 +26,9 @@ public class Clubgoer extends Thread {
 	private boolean wantToLeave;
 	
 	private int ID; //thread ID 
+
+	private Lock lock = new ReentrantLock();
+	private Condition condition = lock.newCondition();
 
 	
 	Clubgoer( int ID,  PeopleLocation loc,  int speed) {
@@ -56,10 +60,7 @@ public class Clubgoer extends Thread {
 	//check to see if user pressed pause button
 	private void checkPause() {
 		// THIS DOES NOTHING - MUST BE FIXED 
-		boolean paused;
 		
-		 	
-        
     }
 	private void startSim() {
 		// THIS DOES NOTHING - MUST BE FIXED  	
