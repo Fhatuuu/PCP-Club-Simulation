@@ -30,6 +30,8 @@ public class Clubgoer extends Thread {
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
 
+	private boolean paused = false;
+
 	
 	Clubgoer( int ID,  PeopleLocation loc,  int speed) {
 		this.ID=ID;
@@ -58,8 +60,10 @@ public class Clubgoer extends Thread {
 	//setter
 
 	//check to see if user pressed pause button
-	private void checkPause() {
-		// THIS DOES NOTHING - MUST BE FIXED 
+	private void checkPause() throws InterruptedException {
+		while (ClubSimulation.isPaused()){
+			Thread.sleep(100);
+		}
 		
     }
 	private void startSim() {

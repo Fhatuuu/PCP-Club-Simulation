@@ -79,9 +79,7 @@ public class ClubSimulation {
 		startB.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e)  {
 				
-				start();
-
-			   
+				start(); 
 			}
 		   });
 			
@@ -90,8 +88,12 @@ public class ClubSimulation {
 			// add the listener to the jbutton to handle the "pressed" event
 			pauseB.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	
-				
+		    	paused = !paused;
+				if (paused) {
+					pauseB.setText("Resume");
+				} else{
+					pauseB.setText("Paused");
+				}
 		      }
 		    });
 			
@@ -159,6 +161,10 @@ public class ClubSimulation {
 			for (int i=0;i<noClubgoers;i++) {
 				patrons[i].start();
 			}
+	}
+
+	public static boolean isPaused() {
+		return paused;
 	}
 
 }

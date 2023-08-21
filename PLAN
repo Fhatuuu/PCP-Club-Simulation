@@ -70,7 +70,7 @@ SOLUTION
 
 Issues identified: 
 1. The START button does not start the simulation, simulation starts automatically when the program is ran (solved)
-2. Pause button does not pause/resume the simulation (basically has no impact on the simulation)
+2. Pause button does not pause/resume the simulation (basically has no impact on the simulation) (solved)
 3. Multiple patrons entering through the door at the same time
 4. Maximum limit is not upheld (more that 5 patrons are entering the club)
 5. Patrons don't move simultanenously (no liveliness)
