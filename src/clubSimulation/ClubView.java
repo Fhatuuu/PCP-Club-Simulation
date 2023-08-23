@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
 import javax.swing.JPanel;
+import javax.swing.text.AbstractDocument.BranchElement;
 
 public class ClubView extends JPanel implements Runnable {
 		private PeopleLocation[] patronLocations; //array of the locations of the patrons
@@ -16,6 +17,7 @@ public class ClubView extends JPanel implements Runnable {
 		private int maxX; //Maximum X for the grid
 
 		ClubGrid grid; //shared grid
+		private Barman andre; 
 		
 		ClubView(PeopleLocation[] custs,  ClubGrid grid,int []exits) { //constructor
 			this.patronLocations=custs; 
