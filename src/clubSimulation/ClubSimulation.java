@@ -18,7 +18,7 @@ public class ClubSimulation {
 	static int yLimit=400;
 	static int gridX=10; //number of x grids in club - default value if not provided on command line
 	static int gridY=10; //number of y grids in club - default value if not provided on command line
-	static int max=25; //max number of customers - default value if not provided on command line
+	static int max=5; //max number of customers - default value if not provided on command line
 
 	
 	static boolean simStarted = false;
@@ -160,10 +160,10 @@ public class ClubSimulation {
 		}
 	}
 
-	public static boolean isSimStarted(){
+	synchronized public static boolean isSimStarted(){
 		return simStarted;
 	}
-	public static boolean isPaused() {
+	synchronized public static boolean isPaused() {
 		return paused;
 	}
 
