@@ -4,15 +4,10 @@ package clubSimulation;
 // the main class, starts all threads
 import javax.swing.*;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.Random;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ClubSimulation {
 
@@ -23,7 +18,8 @@ public class ClubSimulation {
 	static int yLimit=400;
 	static int gridX=10; //number of x grids in club - default value if not provided on command line
 	static int gridY=10; //number of y grids in club - default value if not provided on command line
-	static int max=5; //max number of customers - default value if not provided on command line
+	static int max=25; //max number of customers - default value if not provided on command line
+
 	
 	static boolean simStarted = false;
 	static volatile boolean paused = false;
@@ -38,10 +34,7 @@ public class ClubSimulation {
 	static CounterDisplay counterDisplay ; //threaded display of counters
 	
 	private static int maxWait=1200; //for the slowest customer
-	private static int minWait=500; //for the fastest cutomer
-
-	private static Lock lock = new ReentrantLock();
-	private static Condition condition = lock.newCondition();
+	private static int minWait=500; //for the fastest customer
 
 	public static void setupGUI(int frameX,int frameY,int [] exits) {
 		// Frame initialize and dimensions
@@ -93,7 +86,7 @@ public class ClubSimulation {
 				if (paused) {
 					pauseB.setText("Resume");
 				} else{
-					pauseB.setText("Paused");
+					pauseB.setText("Pause");
 				}
 		      }
 		    });

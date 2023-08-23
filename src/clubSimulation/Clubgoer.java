@@ -29,6 +29,7 @@ public class Clubgoer extends Thread {
 
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
+	private AtomicBoolean simStarted = new AtomicBoolean(false);
 
 	
 	Clubgoer( int ID,  PeopleLocation loc,  int speed) {
