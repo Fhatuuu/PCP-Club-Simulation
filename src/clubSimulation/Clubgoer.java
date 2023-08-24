@@ -32,6 +32,8 @@ public class Clubgoer extends Thread {
 	private Condition condition = lock.newCondition();
 	private AtomicBoolean simStarted = new AtomicBoolean(false);
 
+	private final Object monitor = new Object();
+
 	
 	Clubgoer( int ID,  PeopleLocation loc,  int speed) {
 		this.ID=ID;
@@ -62,8 +64,12 @@ public class Clubgoer extends Thread {
 
 	//check to see if user pressed pause button
 	private void checkPause() throws InterruptedException {
-		while (ClubSimulation.isPaused()){
-			Thread.sleep(10);
+		synchronized (monitor) {
+			while (ClubSimulation.isPaused()){
+				monitor.wait();
+			
+			}
+		
 		}
 		
     }
@@ -93,7 +99,7 @@ public class Clubgoer extends Thread {
 		currentBlock = club.enterClub(myLocation);  //enter through entrance
 		inRoom=true;
 		System.out.println("Thread "+this.ID + " entered club at position: " + currentBlock.getX()  + " " +currentBlock.getY() );
-		sleep(movingSpeed/4);  //wait a bit at door
+		//sleep(movingSpeed/4);  //wait a bit at door
 	}
 	
 	//go to bar

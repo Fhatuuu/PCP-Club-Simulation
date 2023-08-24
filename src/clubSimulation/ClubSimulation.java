@@ -12,17 +12,18 @@ import java.util.Random;
 public class ClubSimulation {
 
 
-	static int noClubgoers=100;
+	static int noClubgoers=20;
    	static int frameX=400;
 	static int frameY=500;
 	static int yLimit=400;
 	static int gridX=10; //number of x grids in club - default value if not provided on command line
 	static int gridY=10; //number of y grids in club - default value if not provided on command line
-	static int max=50; //max number of customers - default value if not provided on command line
+	static int max=5; //max number of customers - default value if not provided on command line
 
 	
 	static boolean simStarted = false;
 	static volatile boolean paused = false;
+	static final Object monitor = new Object();
 	
 	static Clubgoer[] patrons; // array for customer threads
 	static PeopleLocation [] peopleLocations;  //array to keep track of where customers are
@@ -157,6 +158,17 @@ public class ClubSimulation {
 			for (int i=0;i<noClubgoers;i++) {
 				patrons[i].start();
 			}
+		}
+	}
+
+	synchronized public static void pauseSimulation() {
+		paused = true;
+	}
+
+	public static void resumeSim() {
+		paused = false;
+		synchronized (monitor) {
+			monitor.notifyAll();
 		}
 	}
 
