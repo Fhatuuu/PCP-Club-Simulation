@@ -11,28 +11,54 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Barman extends Thread{
     
-    private final Lock serverLock = new ReentrantLock();
-    private boolean isServing = false;
+    private ClubGrid barGrid;
+    private int pos_x;
+    private int pos_y;
+    private boolean serving = true;
 
-    public void serveDrink() throws InterruptedException {
-        synchronized (serverLock) {
-            isServing = true;
-            serverLock.notifyAll();
+    public Barman (ClubGrid barGrid) {
+        this.barGrid = barGrid;
+        pos_x = 1;
+        pos_y = barGrid.getBar_y();
+    }
+
+    public void stopServing() {
+        serving = false;
+    }
+
+    public void moveAndre() {
+        if (pos_x == barGrid.getMaxX() -1) {
+            pos_x = 1; // move to the left
         }
-
-        Thread.sleep(1000);
-
-        synchronized (serverLock) {
-            isServing = false;
-            serverLock.notifyAll(); // notify thay serving is done
+        else {
+            pos_x = barGrid.getMaxX() -1; // move to the right right side
         }
     }
 
-    public void waitForServe() throws InterruptedException {
-        synchronized (serverLock) {
-            while (isServing) {
-                serverLock.wait();
-            }
-        }
+    public int getPosX() {
+        return pos_x;
     }
+
+    public int getPosY() {
+        return pos_y;
+    }
+
+    //private void serveDrink(GridBlock barBlock) throws InterruptedException {
+       // barBlock.
+    //}
+
+    // public void run() {
+    //     while (serving) {
+    //         try{
+    //             moveAndre();
+
+    //             GridBlock barBlock = barGrid.whichBlock(pos_x, pos_y) ;
+    //             if (barBlock.occupied()) {
+                    
+    //             }
+    //         }
+
+    //     }
+    // }
+
 }

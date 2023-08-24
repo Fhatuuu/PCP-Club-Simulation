@@ -15,6 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Clubgoer extends Thread {
 	
 	public static ClubGrid club; //shared club
+	private ClubView barView; 
 
 	GridBlock currentBlock;
 	private Random rand;
@@ -57,11 +58,12 @@ public class Clubgoer extends Thread {
 	public   int getSpeed() { return movingSpeed; }
 
 	//setter
+	
 
 	//check to see if user pressed pause button
 	private void checkPause() throws InterruptedException {
 		while (ClubSimulation.isPaused()){
-			Thread.sleep(100);
+			Thread.sleep(10);
 		}
 		
     }
@@ -91,7 +93,7 @@ public class Clubgoer extends Thread {
 		currentBlock = club.enterClub(myLocation);  //enter through entrance
 		inRoom=true;
 		System.out.println("Thread "+this.ID + " entered club at position: " + currentBlock.getX()  + " " +currentBlock.getY() );
-		sleep(movingSpeed/2);  //wait a bit at door
+		sleep(movingSpeed/4);  //wait a bit at door
 	}
 	
 	//go to bar

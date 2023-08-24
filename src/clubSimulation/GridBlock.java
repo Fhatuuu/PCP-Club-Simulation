@@ -58,7 +58,7 @@ public class GridBlock {
 	}
 	
 	
-	public  boolean occupied() {
+	synchronized public  boolean occupied() {
 		return isOccupied.get() >= 0;
 	}
 	
