@@ -19,7 +19,7 @@ public class Barman extends Thread{
     public Barman (ClubGrid barGrid) {
         this.barGrid = barGrid;
         pos_x = 1;
-        pos_y = barGrid.getBar_y();
+        pos_y = barGrid.getBar_y() + 1; // Andre is behind the bar area
     }
 
     public void stopServing() {
