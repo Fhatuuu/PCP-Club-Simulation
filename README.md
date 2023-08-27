@@ -15,9 +15,9 @@ The aim of this project was to correct and extend an existing simulation code of
 
 ### Launch Simulation
 To launch the main simulation follow the following steps:
-1. run "make clean" to remove all existing .class files in you terminal
-2. complile all class by executing "make all" in your terminal
-3. run *ClubSimulation.java* either from your IDE(preffered) or in the terminal.
+1. run _"make clean"_ to remove all existing .class files in you terminal
+2. complile all class by executing _"make all"_ in your terminal
+3. run *ClubSimulation.java* either from your IDE (preffered) or in the terminal.
 Note that you can modify the size of the grid and number of patrons to your satisfaction.
 
 ## Simulation Design
