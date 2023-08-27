@@ -4,6 +4,8 @@ AIM: to correct and extend the existing code for a multithreaded simulation of p
 CLUB SIMULATION: produce a java simulation of a club, ensuring that it follows defined behavioral rules -
 
     SIMULATION SPECS
+
+    
     .... a club is represented as a GRID of a specified size
     .... contains an entrance door
     .... an exit door
@@ -83,5 +85,6 @@ Solutions:
 4. - Lock the door when the amount of patrons inside are 5, and when at least patron leaves, unlock the door.
    - Patrons outside must wait until there is space inside (ergo waiting number should increment as well)
 5. When one thread is moving, all other threads must also move, if threads do not have anywhere to go, they should wander around.
-6. A patrons should order on drink and after getting their drink, they should leave (the bar not the club... they can wander).
+6. A patrons should order on drink and after getting their drink, they should leave (the bar not the club... they can wander)
+.
 
