@@ -4,19 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Font;
 import javax.swing.JPanel;
-import javax.swing.text.AbstractDocument.BranchElement;
 
 public class ClubView extends JPanel implements Runnable {
 		private PeopleLocation[] patronLocations; //array of the locations of the patrons
-		private PeopleLocation barpersonLocation; // where is the barperson?
 		private int noPatrons;  //total number in the simulation
 		private int [] exits; // where is the exit?
 		private int wIncr; //width of each block
 		private int hIncr; //height of each block
 		private int maxY; //maximum Y  for the grid
 		private int maxX; //Maximum X for the grid
-
-		Andre andre;
 
 		ClubGrid grid; //shared grid
 		
@@ -96,13 +92,6 @@ public class ClubView extends JPanel implements Runnable {
 		    		}
 		    }
 		}
-
-		public void setBarmanLocation(PeopleLocation loc) {
-			this.barpersonLocation = loc;
-		}
-
-		
-	
 		public void run() {
 			while (true) {
 				repaint();
