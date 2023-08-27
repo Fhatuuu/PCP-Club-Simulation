@@ -31,9 +31,6 @@ public class Clubgoer extends Thread {
 	private Lock lock = new ReentrantLock();
 	private Condition condition = lock.newCondition();
 	private AtomicBoolean simStarted = new AtomicBoolean(false);
-
-	private final Object monitor = new Object();
-
 	
 	Clubgoer( int ID,  PeopleLocation loc,  int speed) {
 		this.ID=ID;

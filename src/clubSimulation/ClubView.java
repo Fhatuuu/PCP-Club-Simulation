@@ -16,6 +16,8 @@ public class ClubView extends JPanel implements Runnable {
 		private int maxY; //maximum Y  for the grid
 		private int maxX; //Maximum X for the grid
 
+		Andre andre;
+
 		ClubGrid grid; //shared grid
 		
 		ClubView(PeopleLocation[] custs,  ClubGrid grid,int []exits) { //constructor
