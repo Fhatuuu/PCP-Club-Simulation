@@ -17,7 +17,6 @@ public class ClubView extends JPanel implements Runnable {
 		private int maxX; //Maximum X for the grid
 
 		ClubGrid grid; //shared grid
-		private Barman andre; // Andre the Barman instance
 		
 		ClubView(PeopleLocation[] custs,  ClubGrid grid,int []exits) { //constructor
 			this.patronLocations=custs; 
@@ -31,8 +30,6 @@ public class ClubView extends JPanel implements Runnable {
 		    int height = getHeight();
 		    wIncr= width/(maxX+2); //1 space on either side
 		    hIncr= height/(maxY+2);//2 spaces on bottom
-			
-			this.andre = new Barman(grid);
 		}
 		
 		public void paintComponent(Graphics g) {
@@ -82,14 +79,6 @@ public class ClubView extends JPanel implements Runnable {
 		   //draw the ovals representing people in middle of grid block
 			int x,y;
 			g.setFont(new Font("Helvetica", Font.BOLD, hIncr/2));
-			 
-			//barman should go here
-			g.setColor(Color.black) ;
-			int a = andre.getPosX();
-			int b = andre.getPosY();
-			g.fillRect(a* wIncr + wIncr / 4, b * hIncr + hIncr / 4, wIncr / 2, hIncr / 2);
-			
-
 			 
 			 //patrons
 		    for (int i=0;i<noPatrons;i++){	    	

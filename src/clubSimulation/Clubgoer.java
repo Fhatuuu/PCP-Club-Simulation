@@ -76,7 +76,6 @@ public class Clubgoer extends Thread {
 	
 	//get drink at bar
 		private void getDrink() throws InterruptedException {
-			//FIX SO BARMAN GIVES THE DRINK AND IT IS NOT AUTOMATIC
 			thirsty=false;
 			System.out.println("Thread "+this.ID + " got drink at bar position: " + currentBlock.getX()  + " " +currentBlock.getY() );
 			sleep(movingSpeed*5);  //wait a bit

@@ -12,13 +12,13 @@ import java.util.Random;
 public class ClubSimulation {
 
 
-	static int noClubgoers=250;
+	static int noClubgoers=20;
    	static int frameX=400;
 	static int frameY=500;
 	static int yLimit=400;
-	static int gridX=20; //number of x grids in club - default value if not provided on command line
-	static int gridY=20; //number of y grids in club - default value if not provided on command line
-	static int max=100; //max number of customers - default value if not provided on command line
+	static int gridX=10; //number of x grids in club - default value if not provided on command line
+	static int gridY=10; //number of y grids in club - default value if not provided on command line
+	static int max=5; //max number of customers - default value if not provided on command line
 
 	
 	static boolean simStarted = false;
@@ -30,12 +30,14 @@ public class ClubSimulation {
 	
 	static PeopleCounter tallys; //counters for number of people inside and outside club
 
-	static ClubView clubView; //threaded panel to display terrain
 	static ClubGrid clubGrid; // club grid
+	static ClubView clubView; //threaded panel to display terrain
 	static CounterDisplay counterDisplay ; //threaded display of counters
 	
 	private static int maxWait=1200; //for the slowest customer
 	private static int minWait=500; //for the fastest customer
+
+	
 
 	public static void setupGUI(int frameX,int frameY,int [] exits) {
 		// Frame initialize and dimensions
@@ -47,6 +49,7 @@ public class ClubSimulation {
         g.setLayout(new BoxLayout(g, BoxLayout.PAGE_AXIS)); 
       	g.setSize(frameX,frameY);
  	    
+		
 		clubView = new ClubView(peopleLocations, clubGrid, exits);
 		clubView.setSize(frameX,frameY);
 	    g.add(clubView);
@@ -88,6 +91,7 @@ public class ClubSimulation {
 					pauseB.setText("Resume");
 				} else{
 					pauseB.setText("Pause");
+					ClubSimulation.resumeSim();
 				}
 		      }
 		    });
@@ -128,7 +132,7 @@ public class ClubSimulation {
 		int [] exit = {0,(int) gridY/2-1};  //once-cell wide door on left
 				
 	    tallys = new PeopleCounter(max); //counters for people inside and outside club
-		clubGrid = new ClubGrid(gridX, gridY, exit,tallys); //setup club with size and exitsand maximum limit for people    
+		clubGrid = new ClubGrid(gridX, gridY, exit,tallys); //setup club with size and exitsand maximum limit for people  
 		Clubgoer.club = clubGrid; //grid shared with class
 	   
 	    peopleLocations = new PeopleLocation[noClubgoers];
