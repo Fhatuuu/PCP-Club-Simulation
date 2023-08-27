@@ -3,20 +3,21 @@
 The aim of this project was to correct and extend an existing simulation code of patrons in a club. I had to use synchronization methods to ensure that the existing code adhered to synchronization limits and maintain thread safety and liveness.
 
 ## Class Description
-* ClubSimulation.java: Main class for setting up and starting the simulation.
-* ClubView.java: JPanel class for visualization.
-* CounterDisplay.java: Class for displaying/updating counters.
-* Clubgoer.java: Class representing each patron as a thread.
-* PeopleLocation.java: Class for storing patron locations.
-* PeopleCounter.java: Class for tracking people inside and outside the club.
-* ClubGrid.java: Class representing the club grid.
-* GridBlock.java: Class representing grid blocks.
+* *ClubSimulation.java*: Main class for setting up and starting the simulation.
+* *ClubView.java*: JPanel class for visualization.
+* *CounterDisplay.java*: Class for displaying/updating counters.
+* *Clubgoer.java*: Class representing each patron as a thread.
+* *PeopleLocation.java*: Class for storing patron locations.
+* *PeopleCounter.java*: Class for tracking people inside and outside the club.
+* *ClubGrid.java*: Class representing the club grid.
+* *GridBlock.java*: Class representing grid blocks.
+
 
 ### Launch Simulation
 To launch the main simulation follow the following steps:
 1. run "make clean" to remove all existing .class files in you terminal
 2. complile all class by executing "make all" in your terminal
-3. run ClubSimulation.java either from your IDE(preffered) or in the terminal.
+3. run *ClubSimulation.java* either from your IDE(preffered) or in the terminal.
 Note that you can modify the size of the grid and number of patrons to your satisfaction.
 
 ## Simulation Design
@@ -33,19 +34,18 @@ The simulation is designed as follows:
 * The Quit button terminates the simulation (it does).
 * Patrons enter through the entrance door and exit through the exit doors.
 * The entrance and exit doors are accessed by one patron at a time.
-* The maximum number of patrons inside the club must not exceed a specified
-* limit.
+* The maximum number of patrons inside the club must not exceed a specified limit.
 * Patrons must wait if the club limit is reached or the entrance door is occupied.
 * Inside the club, patrons maintain a realistic distance from each other (one per grid block).
 * Patrons move block by block and simultaneously to ensure liveness.
 
 ## Concurrency Issues and Solutions
 
-### Concurrency/Behaviour Issues Identified
+### Behaviour Issues Identified
 1. The START button does not start the simulation, simulation starts automatically when the program is ran 
 2. Pause button does not pause/resume the simulation (basically has no impact on the simulation)
 3. Multiple patrons entering through the door at the same time 
-4. Maximum limit is not upheld (more that 5 patrons are entering the club) 
+4. Maximum limit is not upheld (more that the max patrons are entering the club) 
 5. No liveliness
 
 ### Solutions 
@@ -58,6 +58,6 @@ The simulation is designed as follows:
 6. A patrons should order on drink and after getting their drink, they should leave (the bar not the club... they can wander)
 
 ## Collaborators
-* [Michelle Kuttel] (mkuttel@gmail.com)
-* [Fhatuwani Mokwenda] (https://github.com/Fhatuuu)
+* [*Michelle Kuttel*] (mkuttel@gmail.com)
+* [*Fhatuwani Mokwenda*] (https://github.com/Fhatuuu)
 
