@@ -8,8 +8,6 @@ JAVADOC = javadoc
 SRCDIR = src
 BINDIR = bin
 
-
-
 SOURCES = $(shell find $(SRCDIR) -name '*.java')
 
 # Define targets and dependencies

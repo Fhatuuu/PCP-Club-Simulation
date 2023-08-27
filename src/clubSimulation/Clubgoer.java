@@ -2,6 +2,11 @@
 package clubSimulation;
 
 import java.util.Random;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /*
  This is the basic ClubGoer Thread class, representing the patrons at the club
@@ -22,6 +27,11 @@ public class Clubgoer extends Thread {
 	private boolean wantToLeave;
 	
 	private int ID; //thread ID 
+
+	private Lock lock = new ReentrantLock();
+	private Condition condition = lock.newCondition();
+	private AtomicBoolean simStarted = new AtomicBoolean(false);
+
 	private final Object monitor = new Object();
 
 	
@@ -54,12 +64,8 @@ public class Clubgoer extends Thread {
 
 	//check to see if user pressed pause button
 	private void checkPause() throws InterruptedException {
-		synchronized (monitor) {
-			while (ClubSimulation.isPaused()){
-				monitor.wait();
-			
-			}
-		
+		while (ClubSimulation.isPaused()){
+			Thread.sleep(100);
 		}
 		
     }
@@ -76,6 +82,7 @@ public class Clubgoer extends Thread {
 	
 	//get drink at bar
 		private void getDrink() throws InterruptedException {
+			//FIX SO BARMAN GIVES THE DRINK AND IT IS NOT AUTOMATIC
 			thirsty=false;
 			System.out.println("Thread "+this.ID + " got drink at bar position: " + currentBlock.getX()  + " " +currentBlock.getY() );
 			sleep(movingSpeed*5);  //wait a bit
