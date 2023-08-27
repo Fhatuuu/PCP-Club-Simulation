@@ -2,11 +2,6 @@
 package clubSimulation;
 
 import java.util.Random;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /*
  This is the basic ClubGoer Thread class, representing the patrons at the club
@@ -27,11 +22,6 @@ public class Clubgoer extends Thread {
 	private boolean wantToLeave;
 	
 	private int ID; //thread ID 
-
-	private Lock lock = new ReentrantLock();
-	private Condition condition = lock.newCondition();
-	private AtomicBoolean simStarted = new AtomicBoolean(false);
-
 	private final Object monitor = new Object();
 
 	

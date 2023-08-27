@@ -1,6 +1,4 @@
 package clubSimulation;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  *  Andre the Barman. Andre serves drinks to
@@ -43,22 +41,38 @@ public class Barman extends Thread{
         return pos_y;
     }
 
-    //private void serveDrink(GridBlock barBlock) throws InterruptedException {
-       // barBlock.
-    //}
+    private void serveDrink(GridBlock barBlock) throws InterruptedException {
+        barBlock.get(-1); // Acquire the lock for the bar block
+        try {
+            if (barBlock.occupied() && barBlock.isBar()) {
+                System.out.println("Andre the Barman serves drink to patron at position: " + barBlock.getX() + " " + barBlock.getY());
+                Thread.sleep(10);
+            }
+        } finally {
+            barBlock.release(); // Release the lock for the bar block
+        }
+    }
 
-    // public void run() {
-    //     while (serving) {
-    //         try{
-    //             moveAndre();
+    public void run() {
 
-    //             GridBlock barBlock = barGrid.whichBlock(pos_x, pos_y) ;
-    //             if (barBlock.occupied()) {
-                    
-    //             }
-    //         }
+        while (serving) {
+            try{
+                GridBlock block = barGrid.whichBlock(pos_y, pos_x) ;
+                if (block.get(-1)) {
+                    serveDrink(block); 
+                    block.release();
+                }
+                moveAndre();
+                Thread.sleep(5);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-    //     }
-    // }
+               
+        }
 
+    }
 }
+
+
