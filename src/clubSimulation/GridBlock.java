@@ -15,7 +15,6 @@ public class GridBlock {
 	private int [] coords; // the coordinate of the block.
 
 	private Lock lock = new ReentrantLock();
-
 	
 	GridBlock(boolean exitBlock, boolean barBlock, boolean danceBlock) throws InterruptedException {
 		isExit=exitBlock;
@@ -51,8 +50,7 @@ public class GridBlock {
 			lock.unlock();
 		}
 	}
-		
-	
+
 	public void release() {
 		isOccupied.set(-1);
 	}
