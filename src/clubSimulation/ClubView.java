@@ -33,7 +33,6 @@ public class ClubView extends JPanel implements Runnable {
 		    hIncr= height/(maxY+2);//2 spaces on bottom
 			
 			this.andre = new Barman(grid);
-			this.andre.start();
 		}
 		
 		public void paintComponent(Graphics g) {
