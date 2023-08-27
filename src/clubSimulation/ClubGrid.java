@@ -3,9 +3,6 @@
 
 package clubSimulation;
 
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
 //This class represents the club as a grid of GridBlocks
 public class ClubGrid {
 	private GridBlock [][] Blocks;
@@ -20,8 +17,6 @@ public class ClubGrid {
 	
 	private PeopleCounter counter;
 
-	private Lock entryLock = new ReentrantLock();
-	
 	ClubGrid(int x, int y, int [] exitBlocks,PeopleCounter c) throws InterruptedException {
 		if (x<minX) x=minX; //minimum x
 		if (y<minY) y=minY; //minimum x
