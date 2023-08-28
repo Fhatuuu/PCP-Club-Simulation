@@ -12,17 +12,17 @@ import java.util.Random;
 public class ClubSimulation {
 
 
-	static int noClubgoers=500;
+	static int noClubgoers=20;
    	static int frameX=400;
 	static int frameY=500;
 	static int yLimit=400;
-	static int gridX=20; //number of x grids in club - default value if not provided on command line
-	static int gridY=20; //number of y grids in club - default value if not provided on command line
-	static int max=100; //max number of customers - default value if not provided on command line
+	static int gridX=10; //number of x grids in club - default value if not provided on command line
+	static int gridY=10; //number of y grids in club - default value if not provided on command line
+	static int max=5; //max number of customers - default value if not provided on command line
 
 	
 	static boolean simStarted = false;
-	static volatile boolean paused = false;
+	static volatile boolean paused = false; // pause flag
 	
 	static Clubgoer[] patrons; // array for customer threads
 	static PeopleLocation [] peopleLocations;  //array to keep track of where customers are
@@ -84,9 +84,9 @@ public class ClubSimulation {
 		      public void actionPerformed(ActionEvent e) {
 		    	paused = !paused;
 				if (paused) {
-					pauseB.setText("Resume");
+					pauseB.setText("Resume"); // Change button text to "Resume"
 				} else{
-					pauseB.setText("Pause");
+					pauseB.setText("Pause"); // Change button text to "Pause"
 				}
 		      }
 		    });
