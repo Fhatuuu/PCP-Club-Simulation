@@ -34,7 +34,7 @@ public class GridBlock {
 	
 	public  boolean get(int threadID) throws InterruptedException {
 		lock.lock();
-
+		// only one patron can occupy a single block
 		try{
 			if (isOccupied.get() == threadID){
 				return true;
@@ -47,7 +47,7 @@ public class GridBlock {
 			return isOccupied.compareAndSet(-1, threadID);
 			
 		} finally {
-			lock.unlock();
+			lock.unlock(); 
 		}
 	}
 

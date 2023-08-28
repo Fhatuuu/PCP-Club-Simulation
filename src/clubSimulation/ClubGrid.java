@@ -75,7 +75,7 @@ public class ClubGrid {
 
 		synchronized (entrance) {
 
-			while (entrance.occupied()) {
+			while (entrance.occupied()) { // if the entrance is occupied by either an entering thread or a wandering thread
 				entrance.wait();
 			}
 			entrance.notifyAll();
