@@ -14,7 +14,7 @@ public class GridBlock {
 	private final boolean isDance; //is it the dance area?
 	private int [] coords; // the coordinate of the block.
 
-	private Lock lock = new ReentrantLock();
+	Lock lock = new ReentrantLock();
 	
 	GridBlock(boolean exitBlock, boolean barBlock, boolean danceBlock) throws InterruptedException {
 		isExit=exitBlock;
